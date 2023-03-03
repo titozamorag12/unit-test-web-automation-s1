@@ -1,0 +1,50 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestAll">
+    <test name="basic-tests">
+        <groups>
+            <run>
+                <exclude name="failure-test"/>
+                <include name="basic"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.corecodeqa.ApplicationTest"/>
+            <class name="com.corecodeqa.EmployeeServiceImplTest"/>
+        </classes>
+    </test>
+    <test name="failure-tests">
+        <groups>
+            <run>
+                <exclude name="basic"/>
+                <include name="failure-test"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.corecodeqa.EmployeeServiceImplTest"/>
+        </classes>
+    </test>
+    <test name="extra-tests">
+        <groups>
+            <run>
+                <exclude name="basic"/>
+                <exclude name="failure-test"/>
+                <include name="extra"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.corecodeqa.EmployeeServiceImplTest"/>
+        </classes>
+    </test>
+    <test name="parameters-test">
+        <!-- This parameter will be passed this test only -->
+        <parameter name="additions" value="2000" />
+        <parameter name="deductions" value="3000" />
+        <classes>
+            <class name="com.corecodeqa.EmployeeServiceImplTest">
+                <methods>
+                    <include name="verifyGrossSalaryCalculation" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
